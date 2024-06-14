@@ -14,7 +14,7 @@ export class UsersService {
       data: {
         ...data,
         password: this.generateHash(data.password),
-        roles: UserRole.USER,
+        roles: [UserRole.USER],
       },
     });
   }
@@ -24,7 +24,7 @@ export class UsersService {
       data: {
         ...data,
         password: this.generateHash(data.password),
-        roles: UserRole.PARTNER,
+        roles: [UserRole.PARTNER],
       },
     });
   }
