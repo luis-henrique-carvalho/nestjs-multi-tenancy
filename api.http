@@ -28,3 +28,12 @@ Content-Type: application/json
     "email": "partner5@partner.com",
     "password": "123456"
 }
+
+###
+POST http://localhost:3000/partners
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNseGR6ODFuZzAwMDFic3RpaHowbnJkZHkiLCJuYW1lIjoiUGFydG5lciA1IiwiZW1haWwiOiJwYXJ0bmVyNUBwYXJ0bmVyLmNvbSIsInJvbGVzIjpbIlBBUlRORVIiXSwiY3JlYXRlZEF0IjoiMjAyNC0wNi0xNFQwMDo1NDo0NS4zNDBaIiwidXBkYXRlZEF0IjoiMjAyNC0wNi0xNFQwMDo1NDo0NS4zNDBaIiwiaWF0IjoxNzE4MzI4MDYwLCJleHAiOjE3MTg0MTQ0NjB9.tgbf8TbewVtc_QbFeWVx2qGkFutUv1YxgvRO6aPuOAY
+
+{
+    "name": "partner 5"
+}
