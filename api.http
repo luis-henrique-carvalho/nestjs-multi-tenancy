@@ -15,7 +15,7 @@ POST http://localhost:3000/partners/users
 Content-Type: application/json
 
 {
-    "name": "John Doe",
+    "name": "Partner 5",
     "email": "partner5@partner.com",
     "password": "123456"
 }

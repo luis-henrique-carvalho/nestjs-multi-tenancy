@@ -33,12 +33,10 @@ export class UsersService {
     return bcrypt.hashSync(password, 10);
   }
 
-  findOne(idOrEmail: number | string) {
-    return this.prismaService.user.findUnique({
+  findOne(idOrEmail: string) {
+    return this.prismaService.user.findFirst({
       where: {
-        ...(typeof idOrEmail === 'number'
-          ? { id: idOrEmail }
-          : { email: idOrEmail }),
+        OR: [{ id: idOrEmail }, { email: idOrEmail }],
       },
     });
   }
