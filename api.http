@@ -19,3 +19,12 @@ Content-Type: application/json
     "email": "partner5@partner.com",
     "password": "123456"
 }
+
+### login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "partner5@partner.com",
+    "password": "123456"
+}

@@ -32,4 +32,14 @@ export class UsersService {
   generateHash(password: string) {
     return bcrypt.hashSync(password, 10);
   }
+
+  findOne(idOrEmail: number | string) {
+    return this.prismaService.user.findUnique({
+      where: {
+        ...(typeof idOrEmail === 'number'
+          ? { id: idOrEmail }
+          : { email: idOrEmail }),
+      },
+    });
+  }
 }
