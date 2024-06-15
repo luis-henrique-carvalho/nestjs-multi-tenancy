@@ -1,3 +1,4 @@
+import { TenantService } from './../tenant/tenant.service';
 import { Injectable } from '@nestjs/common';
 import { CreateEventDto } from './dto/create-event.dto';
 import { UpdateEventDto } from './dto/update-event.dto';
@@ -5,16 +6,19 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class EventsService {
-  constructor(private prismaService: PrismaService) {}
+  constructor(
+    private prismaService: PrismaService,
+    private tenantService: TenantService,
+  ) {}
 
-  create(createEventDto: CreateEventDto & { partnerId: string }) {
+  create(createEventDto: CreateEventDto) {
     this.prismaService.event.create({
       data: {
         name: createEventDto.name,
         description: createEventDto.description,
         startDate: new Date(createEventDto.startDate),
         endDate: new Date(createEventDto.endDate),
-        partnerId: createEventDto.partnerId,
+        partnerId: this.tenantService.getTenant().id,
       },
     });
   }

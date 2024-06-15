@@ -1,14 +1,30 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { TenantService } from './../tenant/tenant.service';
+import { UsersService } from './../auth/users/users.service';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+  UseInterceptors,
+} from '@nestjs/common';
 import { EventsService } from './events.service';
 import { CreateEventDto } from './dto/create-event.dto';
 import { UpdateEventDto } from './dto/update-event.dto';
-
+import { AuthGuard } from 'src/auth/auth.guard';
+import { PrismaService } from 'src/prisma/prisma.service';
+import { TenantInterceptor } from 'src/tenant/tenant.interceptor';
+@UseInterceptors(TenantInterceptor)
+@UseGuards(AuthGuard)
 @Controller('events')
 export class EventsController {
   constructor(private readonly eventsService: EventsService) {}
 
   @Post()
-  create(@Body() createEventDto: CreateEventDto) {
+  async create(@Body() createEventDto: CreateEventDto) {
     return this.eventsService.create(createEventDto);
   }
 
