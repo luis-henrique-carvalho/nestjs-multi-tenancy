@@ -12,7 +12,7 @@ export class EventsService {
   ) {}
 
   create(createEventDto: CreateEventDto) {
-    this.prismaService.event.create({
+    const event = this.prismaService.event.create({
       data: {
         name: createEventDto.name,
         description: createEventDto.description,
@@ -21,10 +21,16 @@ export class EventsService {
         partnerId: this.tenantService.getTenant().id,
       },
     });
+
+    return event;
   }
 
   findAll() {
-    return `This action returns all events`;
+    return this.prismaService.event.findMany({
+      where: {
+        partnerId: this.tenantService.getTenant().id,
+      },
+    });
   }
 
   findOne(id: number) {

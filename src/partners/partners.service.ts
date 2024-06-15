@@ -18,6 +18,7 @@ export class PartnersService {
           partnerId: partner.id,
         },
       });
+
       return partner;
     });
 
