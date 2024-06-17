@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreatePartnerUserDto } from './dto/create-partner-user.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { UserRole } from './user-roles';
+import { UserRoles } from './user-roles';
 import * as bcrypt from 'bcrypt';
 import { CreateCommonUserDto } from './dto/create-common-user.dto';
 
@@ -14,7 +14,7 @@ export class UsersService {
       data: {
         ...data,
         password: this.generateHash(data.password),
-        roles: [UserRole.USER],
+        roles: [UserRoles.USER],
       },
     });
   }
@@ -24,7 +24,7 @@ export class UsersService {
       data: {
         ...data,
         password: this.generateHash(data.password),
-        roles: [UserRole.PARTNER],
+        roles: [UserRoles.PARTNER],
       },
     });
   }
